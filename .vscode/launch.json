@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: reg",
+            "type": "python",
+            "request": "launch",
+            "program": "reg.py",
+            "console": "integratedTerminal",
+            "args": ["-pc1","/research/GDA/xuningli/wriva/data/cross_view/pair2/ground.ply",
+            "-pc2","/research/GDA/xuningli/wriva/data/cross_view/pair2/drone.ply",
+            "-outdir","/research/GDA/xuningli/wriva/data/cross_view/pair2/out2"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Python: reg 1",
+            "type": "python",
+            "request": "launch",
+            "program": "reg.py",
+            "console": "integratedTerminal",
+            "args": ["-ground_pc_path","E:\\data\\wriva\\varying\\t04_v07_s00_r02_VaryingAltitudes_M07_building_1_door\\dense\\output\\ascii_with_labels.ply",
+            "-ground_sem_path","E:\\data\\wriva\\varying\\t04_v07_s00_r02_VaryingAltitudes_M07_building_1_door\\dense\\output\\ascii_with_labels_semantic.txt",
+            "-footprint_path","J:\\YANGTANG\\WRIVA dataset\\CE7\\t04_v07_s00_r02_VaryingAltitudes_M07_building_1_door\\input\\footprints\\siteM07_osm_footprints.kml",
+            "-outdir","E:\\data\\wriva\\varying\\res"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Python: current file",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
