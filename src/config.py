@@ -23,7 +23,7 @@ class REG_CONFIG:
     air_gsd: float=0.02
     air_max_pixel_length: int=1100
     ground_gsd: float=0.01
-    ground_max_pixel_length: int=200
+    ground_max_pixel_length: int=400
 
     #ICP
     ICP_MAX_ITER:int=150

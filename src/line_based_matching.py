@@ -347,7 +347,8 @@ class GeoData:
             self.lines=ref_lines
             self.lines_normals,self.lines_pixels_set,self.lines_pixels_normals,self.lines_pixels_weights=get_line_pixel_info(self.lines,self.facade_pixels,self.facade_pixels_normals,tag='ref')
         elif self.type=='footprint':
-            self.polygons_utm=parse_kml(self.config.footprint_path)
+            #self.polygons_utm=parse_kml(self.config.footprint_path)
+            self.polygons_utm=parse_kml_noutm(self.config.footprint_path)
             self.img,self.lines_pixels_set,self.lines_pixels_normals,self.lines,self.lines_normals,self.lines_pixels_weights,self.bound_min,self.bound_max=plot_boundary_footprint(self.polygons_utm,self.reso)
             cv2.imwrite(os.path.join(self.config.out_dir,"footprint_img.png"),self.img)
 
@@ -3330,7 +3331,54 @@ def parse_kml(in_kml):
         build_polys_utm.append(build_utm)
         #print(build_utm)
     return build_polys_utm
-    
+
+def parse_kml_noutm(in_kml):
+    import xml.etree.ElementTree as ET
+    from pyproj import Proj
+    tree = ET.parse(in_kml)
+    root = tree.getroot()
+    tag=root.tag.rstrip('kml')
+    documents=root.findall("{}Document".format(tag))
+    build_polys=[]
+    for doc in documents:
+        folders=doc.findall('{}Folder'.format(tag))
+        if len(folders)==0:
+            folders=[doc]
+        for folder in folders:
+            placemarks=folder.findall('{}Placemark'.format(tag))
+            for placemark in placemarks:
+                geometrys=placemark.findall('{}MultiGeometry'.format(tag))
+                for geometry in geometrys:
+                    build=[]
+                    coords=geometry[0][0][0][0].text.split(' ')
+                    for coord in coords:
+                        x=float(coord.split(',')[0])
+                        y=float(coord.split(',')[1])
+                        build.append([x,y])
+                    build_polys.append(build)
+                polygons=placemark.findall('{}Polygon'.format(tag))
+                for polygon in polygons:
+                    build=[]
+                    coords=polygon[0][0][0].text.split(' ')
+                    for coord in coords:
+                        x=float(coord.split(',')[0])
+                        y=float(coord.split(',')[1])
+                        build.append([x,y])
+                    build.append(build[0])
+                    build_polys.append(build)
+    # zone_number=get_utm_fromLatLon(build_polys[0][0][1],build_polys[0][0][0])
+    # p = Proj(proj='utm',zone=zone_number,ellps='WGS84', preserve_units=False)
+    build_polys_utm=[]
+    for build in build_polys:
+        build_utm=[]
+        for coord in build:
+            x,y=coord[0],coord[1]
+            build_utm.append([x,y])
+        build_polys_utm.append(build_utm)
+        #print(build_utm)
+    return build_polys_utm
+   
+
 def line_based_matching_footprint(config:REG_CONFIG,name):
     import math
     if not os.path.exists(config.out_dir):
@@ -3555,23 +3603,23 @@ def batch_test(src,ref,outdir):
 
 if __name__=="__main__": 
     #DEMO1 (recommend): Ground to Air
-    ground_path=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2a\ground.ply'
-    drone_path=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2a\air.ply'
-    config=REG_CONFIG()
-    config.sem_label_type='coco'
-    config.ref_path=drone_path
-    config.src_path=ground_path
-    config.out_dir=r'E:\data\tmp\5'
-    T=line_based_matching_sem(config)
+    # ground_path=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2a\ground.ply'
+    # drone_path=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2a\air.ply'
+    # config=REG_CONFIG()
+    # config.sem_label_type='coco'
+    # config.ref_path=drone_path
+    # config.src_path=ground_path
+    # config.out_dir=r'E:\data\tmp\5'
+    # T=line_based_matching_sem(config)
     # print(T)
 
     #DEMO 2: Ground to Footprint
-    # ground_path=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2f\ground.ply'
-    # footprint=r'J:\xuningli\wriva\wriva-baseline-toolkit\cross_view\pipeline\test_data\g2f\footprint.kml'
-    # out_dir=r'E:\data\wriva\ce7\res2'
-    # config=REG_CONFIG()
-    # config.sem_label_type='coco'
-    # config.src_path=ground_path
-    # config.out_dir=out_dir
-    # config.footprint_path=footprint
-    # line_based_matching_g2f(config)
+    ground_path=r'E:\data\wriva\ce7\new_pts\4_0\output\ascii_with_labels_binary.ply'
+    footprint=r'J:\xuningli\wriva\data\ce7\ortho1\kml\ortho1.kml'
+    out_dir=r'E:\data\wriva\ce7\new_pts\4_0\reg2'
+    config=REG_CONFIG()
+    config.sem_label_type='coco'
+    config.src_path=ground_path
+    config.out_dir=out_dir
+    config.footprint_path=footprint
+    line_based_matching_g2f(config)
