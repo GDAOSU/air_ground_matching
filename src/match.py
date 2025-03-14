@@ -117,8 +117,8 @@ def cluster_transforms_dbscan(labels, scores, transformations, eps=3.0, min_samp
     softmax_scores = np.exp(cluster_scores - np.max(cluster_scores)) / np.sum(np.exp(cluster_scores - np.max(cluster_scores)))
 
     # Update the list with normalized scores
-    for i, item in enumerate(cluster_results):
-        item["score"] = softmax_scores[i]
+    #for i, item in enumerate(cluster_results):
+    #    item["score"] = softmax_scores[i]
     
     cluster_results.sort(key=lambda x: x["score"], reverse=True)
     return cluster_results
@@ -204,9 +204,9 @@ def save_to_kml(polygons, output_kml):
 def main():
     """Main function to parse arguments and process the files."""
     parser = argparse.ArgumentParser(description="Clip KML polygons using a JSON WKT bounds polygon.")
-    parser.add_argument("--footprint_kml", help="Path to the input KML file.", default='footprint.kml')
-    parser.add_argument("--site_json", help="Path to the JSON file containing the clipping bounds in WKT format.", default='site.json')
-    parser.add_argument("--ground_ply", help="Path to the ground point cloud file.",default='ground.ply')
+    parser.add_argument("--footprint_kml", help="Path to the input KML file.")
+    parser.add_argument("--site_json", help="Path to the JSON file containing the clipping bounds in WKT format.")
+    parser.add_argument("--ground_ply", help="Path to the ground point cloud file.")
     parser.add_argument("--out_dir", help="Path to the ground point cloud file.",default='output')
 
     
@@ -214,17 +214,19 @@ def main():
     site_polygon = Path(args.out_dir, "site_polygon.kml").as_posix()
     # Read input files
     kml_polygons = read_kml(args.footprint_kml)
-    clip_polygon = read_json(args.site_json)
-    # Clip polygons
-    clipped_polygons = clip_kml_polygons(kml_polygons, clip_polygon)
-
-    # Save results
-    if clipped_polygons:
-        save_to_kml(clipped_polygons, site_polygon)
-        print(f"Clipped KML saved as {site_polygon}")
+    if args.site_json:
+        clip_polygon = read_json(args.site_json)
+        # Clip polygons
+        clipped_polygons = clip_kml_polygons(kml_polygons, clip_polygon)
+        # Save results
+        if clipped_polygons:
+            save_to_kml(clipped_polygons, site_polygon)
+            print(f"Clipped KML saved as {site_polygon}")
+        else:
+            print("No overlapping polygons found.")
+            return
     else:
-        print("No overlapping polygons found.")
-        return
+        save_to_kml(kml_polygons, site_polygon)
 
     output_dir = Path(args.out_dir)
     output_dir.mkdir(exist_ok=True, parents=True)
