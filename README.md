@@ -18,7 +18,7 @@ Input arguments:
 
 Please refer to "test_data" folder. 
 ```
-python src/line_based_matching.py
+python src/match.py --footprint_kml=your_footprint_kml_file [--site_json=your_boundingbox_json_file] --ground_ply=your_ground_semantic_point_cloud_file --out_dir=your_output_dir
 ```
 
 ## Results

@@ -1284,8 +1284,9 @@ class Line_Matching:
 
         #print("Total # line seg matches: {}".format(num_src_lines*num_ref_lines))
         cnc_weight=0.1
-        dis_weight=0.5
+        dis_weight=0.3
         nc_weight=0.4
+        iou_weight=0.2
         for j in range(num_ref_lines):
            for ii1 in range(num_src_pts):
                 for ii2 in range(ii1,num_src_pts):
@@ -1327,6 +1328,7 @@ class Line_Matching:
                     ref_pixels1=ref_line_pixels[i1]
                     mask=np.linalg.norm(src_set_trans1-ref_pixels1,axis=1)
                     mask=mask<3
+                    iou=np.sum(mask)/src_line_pixels.shape[0]
                     match_direction=(src_set_trans1-ref_pixels1)/np.expand_dims(np.linalg.norm(src_set_trans1-ref_pixels1,axis=1),axis=1)
                     sim1_match_src=abs(np.sum(match_direction*src_normals_trans1,axis=1))
                     sim1_match_ref=abs(np.sum(match_direction*self.footprint.lines_pixels_normals[i1],axis=1))
@@ -1336,12 +1338,12 @@ class Line_Matching:
                     sim1_match_ref=np.sum(sim1_match_ref*self.ground.lines_pixels_weights)
                     sim1_src_ref=np.sum(np.sum((self.footprint.lines_pixels_normals[i1]*src_normals_trans1),axis=1)*self.ground.lines_pixels_weights)
                     dis1=np.sum(d1<12)/d1.shape[0]
-                    sim1=nc_weight*sim1_src_ref+cnc_weight*(sim1_match_ref+sim1_match_src)/2+dis_weight*dis1
+                    sim1=nc_weight*sim1_src_ref+cnc_weight*(sim1_match_ref+sim1_match_src)/2+dis_weight*dis1+iou*iou_weight
                     
-
                     ref_pixels2=ref_line_pixels[i2]
                     mask=np.linalg.norm(src_set_trans2-ref_pixels2,axis=1)
                     mask=mask<3
+                    iou=np.sum(mask)/src_line_pixels.shape[0]
                     match_direction=(src_set_trans2-ref_pixels2)/np.expand_dims(np.linalg.norm(src_set_trans2-ref_pixels2,axis=1),axis=1)
                     sim2_match_src=abs(np.sum(match_direction*src_normals_trans2,axis=1))
                     sim2_match_ref=abs(np.sum(match_direction*self.footprint.lines_pixels_normals[i2],axis=1))
@@ -1351,7 +1353,7 @@ class Line_Matching:
                     sim2_match_ref=np.sum(sim2_match_ref*self.ground.lines_pixels_weights)
                     sim2_src_ref=np.sum(np.sum((self.footprint.lines_pixels_normals[i2]*src_normals_trans2),axis=1)*self.ground.lines_pixels_weights)
                     dis2=np.sum(d2<12)/d2.shape[0]
-                    sim2=nc_weight*sim2_src_ref+cnc_weight*(sim2_match_ref+sim2_match_src)/2+dis_weight*dis2
+                    sim2=nc_weight*sim2_src_ref+cnc_weight*(sim2_match_ref+sim2_match_src)/2+dis_weight*dis2+iou*iou_weight
                     
 
                     src_pair=src_line
