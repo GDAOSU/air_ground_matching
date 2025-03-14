@@ -15,6 +15,7 @@ import math
 from src.lsd_deep import predict_lsd
 from src.ply import read_ply
 
+
 coco_ground_idx=[90,98,100,123,125]
 coco_building_idx=[86,91,110,111,112,114,115,129,131]
 apl_ground_idx=[1]
@@ -22,7 +23,7 @@ apl_building_idx=[2]
 
 def read_ply_to_o3d(src_path):
     cloud=read_ply(src_path)
-    cloud = np.vstack((cloud['x'], cloud['y'], cloud['z'],cloud['nx'], cloud['ny'], cloud['nz'],cloud['scalar_label'])).T
+    cloud = np.vstack((cloud['x'], cloud['y'], cloud['z'],cloud['nx'], cloud['ny'], cloud['nz'],cloud['label'])).T
     pcd=o3d.geometry.PointCloud()
     pcd.points = o3d.utility.Vector3dVector(cloud[:,:3])
     pcd.normals=o3d.utility.Vector3dVector(cloud[:,3:6])
@@ -347,8 +348,8 @@ class GeoData:
             self.lines=ref_lines
             self.lines_normals,self.lines_pixels_set,self.lines_pixels_normals,self.lines_pixels_weights=get_line_pixel_info(self.lines,self.facade_pixels,self.facade_pixels_normals,tag='ref')
         elif self.type=='footprint':
-            #self.polygons_utm=parse_kml(self.config.footprint_path)
-            self.polygons_utm=parse_kml_noutm(self.config.footprint_path)
+            self.polygons_utm=parse_kml(self.config.footprint_path)
+            #self.polygons_utm=parse_kml_noutm(self.config.footprint_path)
             self.img,self.lines_pixels_set,self.lines_pixels_normals,self.lines,self.lines_normals,self.lines_pixels_weights,self.bound_min,self.bound_max=plot_boundary_footprint(self.polygons_utm,self.reso)
             cv2.imwrite(os.path.join(self.config.out_dir,"footprint_img.png"),self.img)
 
@@ -1226,6 +1227,7 @@ class Line_Matching:
 
     def align_g2f(self):
         import math
+
         self.config.use_sem=False
         src_line_pixels=self.ground.lines_pixels_set.astype(np.int32)
         ref_line_pixels=self.footprint.lines_pixels_set.astype(np.int32)
@@ -1373,9 +1375,12 @@ class Line_Matching:
                     best_ref_line_list.append(ref_pair)
                     
         best_sim_list=sorted(final_score_list,reverse=True)
-        sim=best_sim_list[0]
-        index=final_score_list.index(sim)
-        best_T_final=best_T_list[index]
+        labels=[]
+        scores=[]
+        transes=[]
+        #sim=best_sim_list[0]
+        #index=final_score_list.index(sim)
+        #best_T_final=best_T_list[index]
         for i in range(20):
             sim=best_sim_list[i]
             index=final_score_list.index(sim)
@@ -1397,38 +1402,44 @@ class Line_Matching:
             match_img=drawmatch_line(self.ground.img,self.footprint.img,best_src_line,best_ref_line)
             cv2.imwrite(os.path.join(self.config.out_dir,"match_{}_score_{:5.4f}_nc_{:5.4f}_cnc_{:5.4f}_dis_{:5.4f}.png".format(i,sim,normal_consis,corr_normal_consis,dis)),match_img)
 
-        # change to 3D transformation, src_pts -> rotate plane to Z axis -> scale init -> center to lefttop bbox -> object to image space -> Line Transformation 3D -> image to object space-> back to ref lefttop bbox -> rotate back to ref
-        Trans_line_2D=best_T_final
-        scale=np.sqrt(Trans_line_2D[0,0]**2+Trans_line_2D[0,1]**2)
-        Rot_3D=np.identity(3)*scale
-        Rot_3D[:2,:2]=Trans_line_2D[:2,:2]
-        Trans_3D=np.zeros(3)
-        Trans_3D[:2]=Trans_line_2D[:2,2]
-        Transformation_Line_3D=np.identity(4)
-        Transformation_Line_3D[:3,:3]=Rot_3D
-        Transformation_Line_3D[:3,3]=Trans_3D
-        Trans_object2ortho=np.identity(4)
-        Trans_object2ortho[1,1]=-1
-        Trans_SRC_LEFTTOP=np.identity(4)
-        Trans_SRC_LEFTTOP[0,3]=-self.ground.bound_min[0]
-        Trans_SRC_LEFTTOP[1,3]=-self.ground.bound_max[1]
-        Trans_REF_LEFTTOP=np.identity(4)
-        Trans_REF_LEFTTOP[0,3]=-self.footprint.bound_min[0]
-        Trans_REF_LEFTTOP[1,3]=-self.footprint.bound_max[1]
-        Trans_SRC_ROTPLANE=np.identity(4)
-        Trans_SRC_ROTPLANE[:3,:3]=self.ground.rot_plane
-        Trans_REF_ROTPLANE=np.identity(4)
-        #Trans_REF_ROTPLANE[:3,:3]=self.footprint.rot_plane
-        HEIGHT_SHIFT=np.identity(4)
-        HEIGHT_SHIFT[2,3]=self.footprint.z_height-self.ground.z_height*scale
-        SRC_SCALE=np.identity(4)
-        SRC_SCALE[:3,:3]*=1/self.ground.reso
-        REF_SCALE=np.identity(4)
-        REF_SCALE[:3,:3]*=self.footprint.reso
-        #out_transformation=np.linalg.inv(Trans_REF_ROTPLANE)@HEIGHT_SHIFT@np.linalg.inv(Trans_REF_LEFTTOP)@np.linalg.inv(Trans_object2ortho)@Transformation_Line_3D@Trans_object2ortho@Trans_SRC_LEFTTOP@SCALE_INIT@Trans_SRC_ROTPLANE@self.config.init_trans
-        out_transformation=np.linalg.inv(Trans_REF_ROTPLANE)@HEIGHT_SHIFT@np.linalg.inv(Trans_REF_LEFTTOP)@np.linalg.inv(Trans_object2ortho)@REF_SCALE@Transformation_Line_3D@Trans_object2ortho@SRC_SCALE@Trans_SRC_LEFTTOP@Trans_SRC_ROTPLANE@self.config.init_trans
-        self.T=out_transformation
-        print(self.T)
+            # change to 3D transformation, src_pts -> rotate plane to Z axis -> scale init -> center to lefttop bbox -> object to image space -> Line Transformation 3D -> image to object space-> back to ref lefttop bbox -> rotate back to ref
+            Trans_line_2D=best_T
+            scale=np.sqrt(Trans_line_2D[0,0]**2+Trans_line_2D[0,1]**2)
+            Rot_3D=np.identity(3)*scale
+            Rot_3D[:2,:2]=Trans_line_2D[:2,:2]
+            Trans_3D=np.zeros(3)
+            Trans_3D[:2]=Trans_line_2D[:2,2]
+            Transformation_Line_3D=np.identity(4)
+            Transformation_Line_3D[:3,:3]=Rot_3D
+            Transformation_Line_3D[:3,3]=Trans_3D
+            Trans_object2ortho=np.identity(4)
+            Trans_object2ortho[1,1]=-1
+            Trans_SRC_LEFTTOP=np.identity(4)
+            Trans_SRC_LEFTTOP[0,3]=-self.ground.bound_min[0]
+            Trans_SRC_LEFTTOP[1,3]=-self.ground.bound_max[1]
+            Trans_REF_LEFTTOP=np.identity(4)
+            Trans_REF_LEFTTOP[0,3]=-self.footprint.bound_min[0]
+            Trans_REF_LEFTTOP[1,3]=-self.footprint.bound_max[1]
+            Trans_SRC_ROTPLANE=np.identity(4)
+            Trans_SRC_ROTPLANE[:3,:3]=self.ground.rot_plane
+            Trans_REF_ROTPLANE=np.identity(4)
+            #Trans_REF_ROTPLANE[:3,:3]=self.footprint.rot_plane
+            HEIGHT_SHIFT=np.identity(4)
+            HEIGHT_SHIFT[2,3]=self.footprint.z_height-self.ground.z_height*scale
+            SRC_SCALE=np.identity(4)
+            SRC_SCALE[:3,:3]*=1/self.ground.reso
+            REF_SCALE=np.identity(4)
+            REF_SCALE[:3,:3]*=self.footprint.reso
+            #out_transformation=np.linalg.inv(Trans_REF_ROTPLANE)@HEIGHT_SHIFT@np.linalg.inv(Trans_REF_LEFTTOP)@np.linalg.inv(Trans_object2ortho)@Transformation_Line_3D@Trans_object2ortho@Trans_SRC_LEFTTOP@SCALE_INIT@Trans_SRC_ROTPLANE@self.config.init_trans
+            out_transformation=np.linalg.inv(Trans_REF_ROTPLANE)@HEIGHT_SHIFT@np.linalg.inv(Trans_REF_LEFTTOP)@np.linalg.inv(Trans_object2ortho)@REF_SCALE@Transformation_Line_3D@Trans_object2ortho@SRC_SCALE@Trans_SRC_LEFTTOP@Trans_SRC_ROTPLANE@self.config.init_trans
+            
+
+            labels.append("match_{}_score_{:5.4f}".format(i,sim))
+            scores.append(sim)
+            transes.append(out_transformation.tolist())
+            if i==0:
+                self.T=out_transformation
+        return [labels,scores,transes]
     
     def align_a2f(self):
         self.config.use_sem=False
@@ -3373,7 +3384,7 @@ def parse_kml_noutm(in_kml):
         build_utm=[]
         for coord in build:
             x,y=coord[0],coord[1]
-            build_utm.append([x,y])
+            build_utm.append([x,-y])
         build_polys_utm.append(build_utm)
         #print(build_utm)
     return build_polys_utm
@@ -3562,8 +3573,8 @@ def line_based_matching_g2f(config:REG_CONFIG):
     ground.line_extraction()
 
     line_reg=Line_Matching(ground,None,footprint,config)
-    line_reg.align_g2f()
-    np.savetxt(os.path.join(config.out_dir,'transformation.txt'),line_reg.T)
+    return line_reg.align_g2f()
+    #np.savetxt(os.path.join(config.out_dir,'transformation.txt'),line_reg.T)
 
 def single_test(src,ref,outdir,init_trans,gt_trans):
     ground_path=src
@@ -3612,11 +3623,39 @@ if __name__=="__main__":
     # config.out_dir=r'E:\data\tmp\5'
     # T=line_based_matching_sem(config)
     # print(T)
+    
+    #dirs=[
+    #'0_0',
+    #'0_1',
+    #'0_2',
+    #'0_3',
+    #'1_0',
+    #'1_1',
+    #'2_0',
+    #'2_1',
+    #'3_0',
+    #'3_2',
+    #'3_3',
+    #'4_0',
+    #]
+    #for d in dirs:
+    #    ground_path="S:\\GDA\\xuningli\\wriva\\data\\ce7\\ground_pts\\"+d +".ply"
+    #    print(ground_path)
+    #    footprint="S:\\GDA\\xuningli\\wriva\\data\\ce7\\ortho1\\kml\\ortho1.kml"
+    #    out_dir="S:\\GDA\\xuningli\\wriva\\data\\ce7\\result\\"+d
+    #    
+    #    config=REG_CONFIG()
+    #    config.sem_label_type='coco'
+    #    config.src_path=ground_path
+    #    config.out_dir=out_dir
+    #    config.footprint_path=footprint
+    #    os.makedirs(config.out_dir,exist_ok=True)
+    #    line_based_matching_g2f(config)
 
     #DEMO 2: Ground to Footprint
-    ground_path=r'E:\data\wriva\ce7\new_pts\4_0\output\ascii_with_labels_binary.ply'
-    footprint=r'J:\xuningli\wriva\data\ce7\ortho1\kml\ortho1.kml'
-    out_dir=r'E:\data\wriva\ce7\new_pts\4_0\reg2'
+    ground_path=r'S:\GDA\Temp_for_SS\20250311_kshitij_air2ground\0\s2d\output\output_binary.ply'
+    footprint=r'S:\GDA\Temp_for_SS\20250311_kshitij_air2ground\site_polygon.kml'
+    out_dir=r'S:\GDA\Temp_for_SS\20250311_kshitij_air2ground\0\s2d'
     config=REG_CONFIG()
     config.sem_label_type='coco'
     config.src_path=ground_path

@@ -1,0 +1,34 @@
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <Placemark>
+      <name>Polygon 1</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>-76.89112,39.1647603,0 -76.8910758,39.164872,0 -76.8918355,39.1650527,0 -76.8917378,39.1652997,0 -76.8906497,39.1650409,0 -76.8907915,39.1646822,0 -76.89112,39.1647603,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Polygon 2</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>-76.8903396,39.1649832,0 -76.8898266,39.1648557,0 -76.8899336,39.1645967,0 -76.8900959,39.164637,0 -76.8902425,39.1642822,0 -76.8900593,39.1642367,0 -76.8901735,39.1639602,0 -76.8907075,39.1640929,0 -76.8903396,39.1649832,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Polygon 3</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>-76.8911879,39.1645607,0 -76.8911534,39.1646516,0 -76.8908275,39.1645771,0 -76.8909889,39.1641527,0 -76.8921914,39.1644275,0 -76.8920645,39.164761,0 -76.8911879,39.1645607,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

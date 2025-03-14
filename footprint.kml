@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="siteA01" id="siteA01">
+	<SimpleField name="full_id" type="string"></SimpleField>
+	<SimpleField name="osm_id" type="string"></SimpleField>
+	<SimpleField name="osm_type" type="string"></SimpleField>
+	<SimpleField name="building" type="string"></SimpleField>
+	<SimpleField name="man_made" type="string"></SimpleField>
+	<SimpleField name="parking" type="string"></SimpleField>
+	<SimpleField name="roof:shape" type="string"></SimpleField>
+	<SimpleField name="operator:wikidata" type="string"></SimpleField>
+	<SimpleField name="operator" type="string"></SimpleField>
+	<SimpleField name="content" type="string"></SimpleField>
+	<SimpleField name="capacity" type="string"></SimpleField>
+	<SimpleField name="tourism" type="string"></SimpleField>
+	<SimpleField name="opening_hours" type="string"></SimpleField>
+	<SimpleField name="atm" type="string"></SimpleField>
+	<SimpleField name="addr:country" type="string"></SimpleField>
+	<SimpleField name="location" type="string"></SimpleField>
+	<SimpleField name="addr:housename" type="string"></SimpleField>
+	<SimpleField name="gnis:county_name" type="string"></SimpleField>
+	<SimpleField name="outdoor_seating" type="string"></SimpleField>
+	<SimpleField name="official_name" type="string"></SimpleField>
+	<SimpleField name="internet_access" type="string"></SimpleField>
+	<SimpleField name="takeaway" type="string"></SimpleField>
+	<SimpleField name="cuisine" type="string"></SimpleField>
+	<SimpleField name="brand:wikipedia" type="string"></SimpleField>
+	<SimpleField name="brand:wikidata" type="string"></SimpleField>
+	<SimpleField name="brand" type="string"></SimpleField>
+	<SimpleField name="self_service" type="string"></SimpleField>
+	<SimpleField name="automated" type="string"></SimpleField>
+	<SimpleField name="gnis:reviewed" type="string"></SimpleField>
+	<SimpleField name="gnis:import_uuid" type="string"></SimpleField>
+	<SimpleField name="layer" type="string"></SimpleField>
+	<SimpleField name="phone" type="string"></SimpleField>
+	<SimpleField name="drive_through" type="string"></SimpleField>
+	<SimpleField name="addr:state" type="string"></SimpleField>
+	<SimpleField name="building:levels" type="string"></SimpleField>
+	<SimpleField name="website" type="string"></SimpleField>
+	<SimpleField name="gnis:state_id" type="string"></SimpleField>
+	<SimpleField name="gnis:feature_id" type="string"></SimpleField>
+	<SimpleField name="gnis:created" type="string"></SimpleField>
+	<SimpleField name="gnis:county_id" type="string"></SimpleField>
+	<SimpleField name="ele" type="string"></SimpleField>
+	<SimpleField name="amenity" type="string"></SimpleField>
+	<SimpleField name="addr:street" type="string"></SimpleField>
+	<SimpleField name="addr:postcode" type="string"></SimpleField>
+	<SimpleField name="addr:housenumber" type="string"></SimpleField>
+	<SimpleField name="addr:city" type="string"></SimpleField>
+	<SimpleField name="type" type="string"></SimpleField>
+</Schema>
+<Folder><name>siteA01</name>
+  <Placemark>
+	<name>JHU/APL MP1</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580924</SimpleData>
+		<SimpleData name="osm_id">120580924</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7700</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8887704,39.1635888 -76.8886389,39.16445 -76.8881559,39.1644056 -76.8882873,39.1635445 -76.8887704,39.1635888</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP7</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580919</SimpleData>
+		<SimpleData name="osm_id">120580919</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7710</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8895304,39.1641991 -76.8895925,39.1642033 -76.8896241,39.1639272 -76.8892495,39.1639014 -76.8891849,39.1644656 -76.8894974,39.1644871 -76.8895304,39.1641991</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP5</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580922</SimpleData>
+		<SimpleData name="osm_id">120580922</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:housenumber">7705</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8907915,39.1646822 -76.89112,39.1647603 -76.8910758,39.164872 -76.8918355,39.1650527 -76.8917378,39.1652997 -76.8906497,39.1650409 -76.8907915,39.1646822</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580913</SimpleData>
+		<SimpleData name="osm_id">120580913</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8926871,39.1600512 -76.8926566,39.1601705 -76.8923456,39.1601227 -76.8923761,39.1600034 -76.8926871,39.1600512</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Homewood Suites by Hilton Columbia/Laurel</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w412497545</SimpleData>
+		<SimpleData name="osm_id">412497545</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="tourism">hotel</SimpleData>
+		<SimpleData name="official_name">Homewood Suites by Hilton</SimpleData>
+		<SimpleData name="brand:wikipedia">en:Homewood Suites by Hilton</SimpleData>
+		<SimpleData name="brand:wikidata">Q5890701</SimpleData>
+		<SimpleData name="brand">Homewood Suites</SimpleData>
+		<SimpleData name="phone">+1 240 360 2725</SimpleData>
+		<SimpleData name="addr:state">MD</SimpleData>
+		<SimpleData name="website">https://homewoodsuites3.hilton.com/en/hotels/maryland/homewood-suites-by-hilton-columbia-laurel-BALCMHW/index.html</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7531</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8938792,39.1604893 -76.8937864,39.1606844 -76.8937108,39.1606594 -76.893412,39.1612497 -76.893458,39.1612688 -76.89343,39.1613198 -76.8934521,39.161337 -76.8933323,39.1615889 -76.8929942,39.1614718 -76.8928847,39.1613626 -76.8928534,39.1612917 -76.8928987,39.1612538 -76.8930401,39.1612919 -76.8931096,39.1612361 -76.8929928,39.1611904 -76.8930375,39.1611218 -76.8932024,39.1611607 -76.8932482,39.1611083 -76.8936072,39.1604364 -76.8938792,39.1604893</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP2</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580917</SimpleData>
+		<SimpleData name="osm_id">120580917</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7701</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8907075,39.1640929 -76.8903396,39.1649832 -76.8898266,39.1648557 -76.8899336,39.1645967 -76.8900959,39.164637 -76.8902425,39.1642822 -76.8900593,39.1642367 -76.8901735,39.1639602 -76.8907075,39.1640929</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Truist</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w358719951</SimpleData>
+		<SimpleData name="osm_id">358719951</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="opening_hours">Mo-Th 09:00-17:00; Fr 09:00-18:00; Sa 09:00-12:00</SimpleData>
+		<SimpleData name="atm">yes</SimpleData>
+		<SimpleData name="brand:wikidata">Q795486</SimpleData>
+		<SimpleData name="brand">Truist</SimpleData>
+		<SimpleData name="phone">+1 301 490 5689</SimpleData>
+		<SimpleData name="drive_through">yes</SimpleData>
+		<SimpleData name="addr:state">MD</SimpleData>
+		<SimpleData name="website">https://www.truist.com/</SimpleData>
+		<SimpleData name="amenity">bank</SimpleData>
+		<SimpleData name="addr:street">Johns Hopkins Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">10990</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8939121,39.16022 -76.893833,39.1601982 -76.8938509,39.1601627 -76.8938732,39.1601192 -76.8936814,39.1600609 -76.8937726,39.1599258 -76.8938209,39.1599434 -76.8938316,39.1599237 -76.8939497,39.1599601 -76.8939362,39.1599819 -76.8940315,39.1600204 -76.8940221,39.1600453 -76.8940435,39.1600557 -76.8939966,39.1601223 -76.8939387,39.160189 -76.8939121,39.16022</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP4</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580936</SimpleData>
+		<SimpleData name="osm_id">120580936</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7703</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8920645,39.164761 -76.8911879,39.1645607 -76.8911534,39.1646516 -76.8908275,39.1645771 -76.8909889,39.1641527 -76.8921914,39.1644275 -76.8920645,39.164761</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP3</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580926</SimpleData>
+		<SimpleData name="osm_id">120580926</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7707</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.890731,39.1655359 -76.890692,39.1655267 -76.8896574,39.1652823 -76.8895408,39.1655703 -76.8906136,39.1658289 -76.890731,39.1655359</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP6</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w51469086</SimpleData>
+		<SimpleData name="osm_id">51469086</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">office</SimpleData>
+		<SimpleData name="building:levels">6</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7651</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8918464,39.1634064 -76.8921802,39.1623772 -76.8917373,39.1622908 -76.8914035,39.16332 -76.8918464,39.1634064</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>JHU/APL MP8</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w51469082</SimpleData>
+		<SimpleData name="osm_id">51469082</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="building:levels">3</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7600</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8895717,39.1613097 -76.890008,39.1616701 -76.8903321,39.1614342 -76.8899868,39.1611491 -76.8900538,39.1611183 -76.8899948,39.161031 -76.8903917,39.1607523 -76.8901021,39.1604736 -76.8895602,39.1608479 -76.8894691,39.160902 -76.8895173,39.1609395 -76.8894959,39.1611266 -76.8896085,39.1612098 -76.8895717,39.1613097</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Montpelier Center</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w51469083</SimpleData>
+		<SimpleData name="osm_id">51469083</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">retail</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8915426,39.1602802 -76.8917126,39.1601624 -76.8923917,39.1607517 -76.8924934,39.1608395 -76.8923237,39.1609576 -76.8922078,39.1608575 -76.8915426,39.1602802</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Knowledge Beginnings</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580904</SimpleData>
+		<SimpleData name="osm_id">120580904</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="phone">+1 301 725 6500</SimpleData>
+		<SimpleData name="addr:state">MD</SimpleData>
+		<SimpleData name="website">https://www.kindercare.com/our-centers/laurel/md/073204</SimpleData>
+		<SimpleData name="amenity">childcare</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7551</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8931753,39.1618945 -76.893069,39.1619486 -76.8931063,39.1619926 -76.8929696,39.1620622 -76.8929327,39.1620187 -76.8928957,39.1620376 -76.8929473,39.1620985 -76.8928382,39.1621541 -76.8926399,39.1619201 -76.8926933,39.1618929 -76.8926324,39.161821 -76.8927047,39.1617841 -76.8926839,39.1617596 -76.8928022,39.1616993 -76.8928244,39.1617255 -76.8929007,39.1616867 -76.8929635,39.1617608 -76.8930323,39.1617258 -76.8931753,39.1618945</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Maryland University of Integrative Health</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w51469079</SimpleData>
+		<SimpleData name="osm_id">51469079</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="website">https://www.muih.edu/</SimpleData>
+		<SimpleData name="gnis:state_id">24</SimpleData>
+		<SimpleData name="gnis:feature_id">2132698</SimpleData>
+		<SimpleData name="gnis:created">08/24/2007</SimpleData>
+		<SimpleData name="gnis:county_id">027</SimpleData>
+		<SimpleData name="ele">121</SimpleData>
+		<SimpleData name="amenity">school</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7550</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.887908,39.1656603 -76.8882728,39.165706 -76.8882406,39.1659181 -76.8881655,39.1659181 -76.8881226,39.1661968 -76.8878222,39.1661635 -76.887908,39.1656603</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Montpelier Center II</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w272477491</SimpleData>
+		<SimpleData name="osm_id">272477491</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="addr:street">Montpelier Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">7530</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8915078,39.1602602 -76.8909665,39.1598027 -76.8910231,39.1597624 -76.8909733,39.1597203 -76.8910814,39.1596434 -76.8916725,39.160143 -76.8915078,39.1602602</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Wash n' Run</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w120580902</SimpleData>
+		<SimpleData name="osm_id">120580902</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="self_service">no</SimpleData>
+		<SimpleData name="automated">yes</SimpleData>
+		<SimpleData name="amenity">car_wash</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8921948,39.1597767 -76.8921441,39.1597697 -76.8920919,39.1597626 -76.8920602,39.1599011 -76.8921095,39.1599079 -76.8921631,39.1599153 -76.8921948,39.1597767</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>APL Federal Credit Union</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w116737886</SimpleData>
+		<SimpleData name="osm_id">116737886</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">yes</SimpleData>
+		<SimpleData name="phone">+1 240 228 5250</SimpleData>
+		<SimpleData name="drive_through">yes</SimpleData>
+		<SimpleData name="addr:state">MD</SimpleData>
+		<SimpleData name="website">https://www.aplfcu.org</SimpleData>
+		<SimpleData name="amenity">bank</SimpleData>
+		<SimpleData name="addr:street">Johns Hopkins Road</SimpleData>
+		<SimpleData name="addr:postcode">20723</SimpleData>
+		<SimpleData name="addr:housenumber">11050</SimpleData>
+		<SimpleData name="addr:city">Laurel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8948458,39.1606434 -76.8948528,39.1606253 -76.8949015,39.1606367 -76.8949255,39.1605747 -76.8949976,39.1605495 -76.8949616,39.1604877 -76.8949834,39.1604307 -76.8949461,39.1604222 -76.8949621,39.1603803 -76.8948032,39.1603438 -76.8947369,39.1603735 -76.8946247,39.1603475 -76.8945848,39.1604511 -76.894622,39.1604597 -76.8945827,39.1605618 -76.8946183,39.16057 -76.8946105,39.1605904 -76.894696,39.1606102 -76.8946944,39.1606326 -76.8946921,39.160664 -76.8946904,39.1606884 -76.8947566,39.1607038 -76.8947662,39.1606789 -76.8947771,39.1606507 -76.8947854,39.1606293 -76.8948458,39.1606434</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<name>Exxon</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#siteA01">
+		<SimpleData name="full_id">w199676834</SimpleData>
+		<SimpleData name="osm_id">199676834</SimpleData>
+		<SimpleData name="osm_type">way</SimpleData>
+		<SimpleData name="building">roof</SimpleData>
+		<SimpleData name="brand:wikidata">Q109675651</SimpleData>
+		<SimpleData name="brand">Exxon</SimpleData>
+		<SimpleData name="amenity">fuel</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-76.8927981,39.1598946 -76.8923852,39.159838 -76.8924118,39.1597213 -76.8928247,39.1597779 -76.8927981,39.1598946</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

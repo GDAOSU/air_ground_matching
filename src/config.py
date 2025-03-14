@@ -22,7 +22,7 @@ class REG_CONFIG:
     footprint_gsd: float=0.5
     air_gsd: float=0.02
     air_max_pixel_length: int=1100
-    ground_gsd: float=0.01
+    ground_gsd: float=0.1
     ground_max_pixel_length: int=400
 
     #ICP
