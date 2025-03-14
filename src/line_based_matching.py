@@ -1278,6 +1278,7 @@ class Line_Matching:
         corr_normal_consis_list=[]
         normal_consis_list=[]
         dis_list=[]
+        iou_list=[]
         
         best_src_line_list=[]
         best_ref_line_list=[]
@@ -1328,7 +1329,7 @@ class Line_Matching:
                     ref_pixels1=ref_line_pixels[i1]
                     mask=np.linalg.norm(src_set_trans1-ref_pixels1,axis=1)
                     mask=mask<3
-                    iou=np.sum(mask)/src_line_pixels.shape[0]
+                    iou1=np.sum(mask)/src_line_pixels.shape[0]
                     match_direction=(src_set_trans1-ref_pixels1)/np.expand_dims(np.linalg.norm(src_set_trans1-ref_pixels1,axis=1),axis=1)
                     sim1_match_src=abs(np.sum(match_direction*src_normals_trans1,axis=1))
                     sim1_match_ref=abs(np.sum(match_direction*self.footprint.lines_pixels_normals[i1],axis=1))
@@ -1338,12 +1339,12 @@ class Line_Matching:
                     sim1_match_ref=np.sum(sim1_match_ref*self.ground.lines_pixels_weights)
                     sim1_src_ref=np.sum(np.sum((self.footprint.lines_pixels_normals[i1]*src_normals_trans1),axis=1)*self.ground.lines_pixels_weights)
                     dis1=np.sum(d1<12)/d1.shape[0]
-                    sim1=nc_weight*sim1_src_ref+cnc_weight*(sim1_match_ref+sim1_match_src)/2+dis_weight*dis1+iou*iou_weight
+                    sim1=nc_weight*sim1_src_ref+cnc_weight*(sim1_match_ref+sim1_match_src)/2+dis_weight*dis1+iou1*iou_weight
                     
                     ref_pixels2=ref_line_pixels[i2]
                     mask=np.linalg.norm(src_set_trans2-ref_pixels2,axis=1)
                     mask=mask<3
-                    iou=np.sum(mask)/src_line_pixels.shape[0]
+                    iou2=np.sum(mask)/src_line_pixels.shape[0]
                     match_direction=(src_set_trans2-ref_pixels2)/np.expand_dims(np.linalg.norm(src_set_trans2-ref_pixels2,axis=1),axis=1)
                     sim2_match_src=abs(np.sum(match_direction*src_normals_trans2,axis=1))
                     sim2_match_ref=abs(np.sum(match_direction*self.footprint.lines_pixels_normals[i2],axis=1))
@@ -1353,7 +1354,7 @@ class Line_Matching:
                     sim2_match_ref=np.sum(sim2_match_ref*self.ground.lines_pixels_weights)
                     sim2_src_ref=np.sum(np.sum((self.footprint.lines_pixels_normals[i2]*src_normals_trans2),axis=1)*self.ground.lines_pixels_weights)
                     dis2=np.sum(d2<12)/d2.shape[0]
-                    sim2=nc_weight*sim2_src_ref+cnc_weight*(sim2_match_ref+sim2_match_src)/2+dis_weight*dis2+iou*iou_weight
+                    sim2=nc_weight*sim2_src_ref+cnc_weight*(sim2_match_ref+sim2_match_src)/2+dis_weight*dis2+iou2*iou_weight
                     
 
                     src_pair=src_line
@@ -1363,6 +1364,7 @@ class Line_Matching:
                     normal_consis_list.append(sim1_src_ref)
                     corr_normal_consis_list.append(0.5*(sim1_match_ref+sim1_match_src))
                     dis_list.append(dis1)
+                    iou_list.append(iou1)
                     best_T_list.append(T1)
                     best_src_line_list.append(src_pair)
                     best_ref_line_list.append(ref_pair)
@@ -1372,6 +1374,7 @@ class Line_Matching:
                     normal_consis_list.append(sim2_src_ref)
                     corr_normal_consis_list.append(0.5*(sim2_match_ref+sim2_match_src))
                     dis_list.append(dis2)
+                    iou_list.append(iou2)
                     best_T_list.append(T2)
                     best_src_line_list.append(src_pair)
                     best_ref_line_list.append(ref_pair)
@@ -1389,6 +1392,7 @@ class Line_Matching:
             normal_consis=normal_consis_list[index]
             corr_normal_consis=corr_normal_consis_list[index]
             dis=dis_list[index]
+            iou=iou_list[index]
             best_T=best_T_list[index]
             best_src_line=best_src_line_list[index]
             best_ref_line=best_ref_line_list[index]
@@ -1402,7 +1406,7 @@ class Line_Matching:
             cv2.imwrite(os.path.join(self.config.out_dir,'warp_ground_line_'+str(i)+'.png'),warped_line_img)
 
             match_img=drawmatch_line(self.ground.img,self.footprint.img,best_src_line,best_ref_line)
-            cv2.imwrite(os.path.join(self.config.out_dir,"match_{}_score_{:5.4f}_nc_{:5.4f}_cnc_{:5.4f}_dis_{:5.4f}.png".format(i,sim,normal_consis,corr_normal_consis,dis)),match_img)
+            cv2.imwrite(os.path.join(self.config.out_dir,"match_{}_score_{:5.4f}_nc_{:5.4f}_cnc_{:5.4f}_dis_{:5.4f}_iou_{:5.4f}.png".format(i,sim,normal_consis,corr_normal_consis,dis,iou)),match_img)
 
             # change to 3D transformation, src_pts -> rotate plane to Z axis -> scale init -> center to lefttop bbox -> object to image space -> Line Transformation 3D -> image to object space-> back to ref lefttop bbox -> rotate back to ref
             Trans_line_2D=best_T

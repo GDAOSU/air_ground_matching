@@ -113,8 +113,8 @@ def cluster_transforms_dbscan(labels, scores, transformations, eps=3.0, min_samp
         })
 
     # Extract scores, apply softmax, and update back
-    cluster_scores = np.array([item["score"] for item in cluster_results])
-    softmax_scores = np.exp(cluster_scores - np.max(cluster_scores)) / np.sum(np.exp(cluster_scores - np.max(cluster_scores)))
+    #cluster_scores = np.array([item["score"] for item in cluster_results])
+    #softmax_scores = np.exp(cluster_scores - np.max(cluster_scores)) / np.sum(np.exp(cluster_scores - np.max(cluster_scores)))
 
     # Update the list with normalized scores
     #for i, item in enumerate(cluster_results):
@@ -211,6 +211,10 @@ def main():
 
     
     args = parser.parse_args()
+
+    output_dir = Path(args.out_dir)
+    output_dir.mkdir(exist_ok=True, parents=True)
+    
     site_polygon = Path(args.out_dir, "site_polygon.kml").as_posix()
     # Read input files
     kml_polygons = read_kml(args.footprint_kml)
@@ -228,8 +232,7 @@ def main():
     else:
         save_to_kml(kml_polygons, site_polygon)
 
-    output_dir = Path(args.out_dir)
-    output_dir.mkdir(exist_ok=True, parents=True)
+    
 
     config=lm.REG_CONFIG()
     config.sem_label_type='coco'

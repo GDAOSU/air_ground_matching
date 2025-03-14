@@ -8,10 +8,15 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "src/match.py",
+			"args":[
+			"--footprint_kml=footprint.kml",
+			"--site_json=site.json",
+			"--ground_ply=ground.ply"
+			],
             "python": "C:/Users/deng.1069/AppData/Local/anaconda3/envs/airgroundmatching/python.exe",  // Update with your Conda environment's Python path
             "console": "integratedTerminal",
-            "cwd": "${fileDirname}",     // Set the current working directory to the workspace folder
+            "cwd": "${workspaceFolder}",     // Set the current working directory to the workspace folder
         },
         {
             "name": "Python: reg",
