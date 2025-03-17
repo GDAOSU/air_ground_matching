@@ -60,7 +60,7 @@ def predict_lsd(input):
 
     # Load the model
     ckpt = 'deeplsd/weights/deeplsd_wireframe.tar'
-    ckpt = torch.load(str(ckpt), map_location='cpu')
+    ckpt = torch.load(str(ckpt), map_location='cpu', weights_only=False)
     net = DeepLSD(conf)
     net.load_state_dict(ckpt['model'])
     net = net.to(device).eval()

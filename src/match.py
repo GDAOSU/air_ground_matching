@@ -176,8 +176,8 @@ def save_to_kml(polygons, output_kml):
 
     # Iterate over each polygon and add it to the KML document
     for idx, polygon in enumerate(polygons):
-        # Prepare coordinates in KML format (longitude, latitude, and altitude as 0)
-        kml_coordinates = " ".join([f"{lon},{lat},0" for lon, lat in polygon.exterior.coords])
+        # Prepare coordinates in KML format (longitude, latitude, and altitude as 0)        
+        kml_coordinates = " ".join([f"{p[0]},{p[1]},0" for p in polygon.exterior.coords])
 
         # Create a Placemark for the Polygon
         placemark = etree.SubElement(document, "Placemark")
